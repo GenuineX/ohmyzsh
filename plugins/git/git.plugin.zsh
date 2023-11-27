@@ -379,6 +379,17 @@ alias gcount='git shortlog --summary --numbered'
 alias gsh='git show'
 alias gsps='git show --pretty=short --show-signature'
 alias gstall='git stash --all'
+alias gsr='git svn rebase'
+alias gss='git status --short'
+#alias gss='git status -s'
+#alias gst='git status'
+alias gs='git status'
+
+# use the default stash push on git 2.13 and newer
+is-at-least 2.13 "$git_version" \
+  && alias gsta='git stash push' \
+  || alias gsta='git stash save'
+
 alias gstaa='git stash apply'
 alias gstc='git stash clear'
 alias gstd='git stash drop'
