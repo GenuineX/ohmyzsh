@@ -1,0 +1,289 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time Oh My Zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  git
+  zsh-autosuggestions
+  autojump
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch $(uname -m)"
+
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# 延迟加载 NVM - 只在需要时加载
+export NVM_DIR="$HOME/.nvm"
+
+# 延迟加载 NVM 和相关命令
+load_nvm() {
+    unset -f nvm node npm npx yarn tnpm claude
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+
+# 使用更高效的延迟加载方式
+nvm() {
+    load_nvm
+    nvm "$@"
+}
+
+node() {
+    load_nvm
+    node "$@"
+}
+
+npm() {
+    load_nvm
+    npm "$@"
+}
+
+npx() {
+    load_nvm
+    npx "$@"
+}
+
+yarn() {
+    load_nvm
+    yarn "$@"
+}
+
+tnpm() {
+    load_nvm
+    tnpm "$@"
+}
+
+# 由于 @anthropic-ai/claude-code 包存在兼容性问题，使用 npx 作为替代方案
+claude() {
+    load_nvm
+    npx @anthropic-ai/claude-code "$@"
+}
+
+# 延迟加载 jenv - 只在需要时加载
+jenv() {
+    unset -f jenv
+    export PATH="$HOME/.jenv/bin:$PATH"
+    eval "$(jenv init -)"
+    export PATH="$HOME/.jenv/shims:$PATH"
+    jenv "$@"
+}
+
+# 基础 PATH 配置
+export PATH="/opt/homebrew/bin:$PATH"
+
+# ===========================================
+# 实用别名和函数
+# ===========================================
+
+# 编辑器配置
+export EDITOR='nvim'
+export VISUAL='nvim'
+
+# 常用别名
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ~='cd ~'
+alias -- -='cd -'
+
+# Git 别名
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gl='git pull'
+alias gd='git diff'
+alias gb='git branch'
+alias gco='git checkout'
+alias gcm='git checkout main'
+alias gcb='git checkout -b'
+
+# 系统别名
+alias c='clear'
+alias h='history'
+alias jl='jobs -l'  # 使用 jl 而不是 jobs，避免与系统命令冲突
+alias path='echo -e ${PATH//:/\\n}'
+alias now='date +"%T"'
+alias nowtime=now
+alias nowdate='date +"%d-%m-%Y"'
+alias ports='netstat -tulanp'
+
+# 实用函数
+# 创建目录并进入
+mkcd() {
+    mkdir -p "$1" && cd "$1"
+}
+
+# 查找文件
+ff() {
+    find . -type f -name "*$1*"
+}
+
+# 查找目录
+fd() {
+    find . -type d -name "*$1*"
+}
+
+# 快速备份文件
+backup() {
+    cp "$1" "$1.backup.$(date +%Y%m%d_%H%M%S)"
+}
+
+# 显示目录大小
+dirsize() {
+    du -sh "$1" 2>/dev/null || du -sh .
+}
+
+# 快速创建 Python 虚拟环境
+mkvenv() {
+    python3 -m venv "$1" && source "$1/bin/activate"
+}
+
+# 快速激活虚拟环境
+activate() {
+    if [ -f "venv/bin/activate" ]; then
+        source venv/bin/activate
+    elif [ -f ".venv/bin/activate" ]; then
+        source .venv/bin/activate
+    else
+        echo "未找到虚拟环境"
+    fi
+}
+
+# ===========================================
+# 性能优化配置
+# ===========================================
+
+# 历史记录配置
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+
+# 自动补全配置
+autoload -Uz compinit
+# 只在必要时重新编译补全缓存
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+    compinit
+else
+    compinit -C
+fi
+
+# 启用缓存
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# 更快的补全
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# 减少启动时间 - 延迟加载某些功能
+# 只在需要时加载语法高亮
+if [[ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
