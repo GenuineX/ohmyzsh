@@ -175,7 +175,6 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 
 # 常用别名
-alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias ..='cd ..'
