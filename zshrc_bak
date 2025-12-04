@@ -112,7 +112,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # 延迟加载 NVM 和相关命令
 load_nvm() {
-    unset -f nvm node npm npx yarn tnpm claude gemini iflow
+    unset -f nvm node npm npx yarn tnpm claude
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 }
@@ -151,6 +151,7 @@ tnpm() {
 # 由于 @anthropic-ai/claude-code 包存在兼容性问题，使用 npx 作为替代方案
 claude() {
     load_nvm
+<<<<<<< HEAD
 #    npx @anthropic-ai/claude-code "$@"
      claude
 }
@@ -165,6 +166,11 @@ iflow() {
     load_nvm
     iflow
 }
+=======
+    npx @anthropic-ai/claude-code "$@"
+}
+
+>>>>>>> 9814bec (add zshrc_bak)
 # 延迟加载 jenv - 只在需要时加载
 jenv() {
     unset -f jenv
@@ -186,6 +192,10 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 
 # 常用别名
+<<<<<<< HEAD
+=======
+alias ll='ls -alF'
+>>>>>>> 9814bec (add zshrc_bak)
 alias la='ls -A'
 alias l='ls -CF'
 alias ..='cd ..'
@@ -297,4 +307,7 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 if [[ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+<<<<<<< HEAD
 export GOOGLE_CLOUD_PROJECT=709526157204
+=======
+>>>>>>> 9814bec (add zshrc_bak)
